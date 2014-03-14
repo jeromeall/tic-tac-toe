@@ -7,7 +7,7 @@
     </li>
   </ul>
   <div id="board" >
-    <div  ng-repeat='tile in tiles' id="{{tile}}" class='tile' ng-click="alert()"></div>
+    <div  ng-repeat='tile in tiles' id="{{tile.name}}" class='tile' ng-click="addMarker($index)">{{tile.letter}}</div>
   </div>
   <div id="results">
     <h1></h1>
