@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require lib/angular/angular.angular.min
-//= require lib/angular/angular.route.min
+//= require angular/angular.min
+//= require angular/angular-route
 //= require_tree .
 

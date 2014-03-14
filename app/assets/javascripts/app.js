@@ -5,8 +5,9 @@ var ticToeApp = angular.module("ticToeApp",[
 
 ticToeApp.config(['$routeProvider',function($routeProvider){
   $routeProvider.
-      when("/", {
-        templateUrl: "views/main.html",
+      when("/", 
+      {
+        templateUrl: "/index.html.erb",
         controller: "ticToeCtrl"
       });
 }]);
