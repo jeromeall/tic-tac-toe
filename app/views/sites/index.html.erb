@@ -1,9 +1,14 @@
 <h1>TEST</h1>
+
+<li ng-repeat="player in players">
+  {{ player.name }}
+</li>
+
  <div id="game">
    <ul id="teams">
     <li>
       <img ng-src="images/ernie.jpg">
-      <h2>Team <span class="team"></span></h2>
+      <h2>Team <span class="team" ></span></h2>
       <h3 class="player"></h3>
     </li>
     <li>
@@ -12,17 +17,7 @@
       <h3 class="player"></h3>
     </li>
   </ul>
-  <div id="board">
-    <div id="tile0" class='tile'></div>
-    <div id="tile1" class="tile"></div>
-    <div id="tile2" class="tile"></div>
-    <div id="tile3" class="tile"></div>
-    <div id="tile4" class="tile"></div>
-    <div id="tile5" class="tile"></div>
-    <div id="tile6" class="tile"></div>
-    <div id="tile7" class="tile"></div>
-    <div id="tile8" class="tile"></div>
-  </div>
+
   <div id="results">
     <h1></h1>
     <span class="image"></span>

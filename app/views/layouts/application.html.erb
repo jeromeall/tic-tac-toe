@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
   <title>TicTacToe</title>
 
   <%= stylesheet_link_tag    "application", media: "all"%>
   <%= javascript_include_tag "application"%>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-  <script src="js/underscore.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body ng-app="ticToeApp">
 
-<div ng-view></div>
-<%= yield %>
+<div ng-view>
+</div>
 
 </body>
 </html>
