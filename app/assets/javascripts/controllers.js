@@ -7,13 +7,13 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
     {
       name:      'Ernie',
       marker:    '&times;',
-      img_url:   'img/ernie.jpg',
+      img_url:   'images/ernie.jpg',
       // indicator: $(status_indicators[0])
     },
     {
       name:      'Bert',
       marker:    '&oslash;',
-      img_url:   'img/bert.jpg',
+      img_url:   'images/bert.jpg',
       // indicator: $(status_indicators[1])
     }
   ];
