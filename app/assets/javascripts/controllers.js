@@ -20,6 +20,8 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
   ];
 
   $scope.turn = 0;
+
+  $scope.activeTiles = [];
   
   $scope.currentPlayer = function(){
     return $scope.players[$scope.playerIndex()];
@@ -53,6 +55,7 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
       if($scope.tiles[i].id === String(index) && $scope.tiles[i].letter === '' ){
         $scope.tiles[i].letter = $scope.currentPlayer().marker;
         $scope.currentPlayer().moves.push(index);
+        $scope.activeTiles.push(index);
         $scope.isWin($scope.currentPlayer().moves);
         $scope.turn += 1;
       }
@@ -61,9 +64,29 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
 
   $scope.isWin = function(moves) {
     for(var combo in $scope.win_combos){
+      console.log(_.intersection($scope.win_combos[combo], moves), $scope.win_combos[combo] );
       if(_.intersection($scope.win_combos[combo], moves).length == $scope.win_combos[combo].length){
-        alert('you win!');
+        console.log("It's a win!");
+        return true;
       }
+    }
+   $scope.isTie(moves);
+  };
+
+  $scope.isBoardFull = function(){
+    if($scope.activeTiles.length === 9){
+      console.log("Board Full");
+      return true;
+    }
+  };
+
+  $scope.isTie = function(moves){
+    if($scope.isBoardFull()){
+
+      console.log("it's a tie!");
+      return true;
+    }else {
+      console.log("not a tie", $scope.activeTiles);
     }
   };
 
