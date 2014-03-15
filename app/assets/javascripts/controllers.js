@@ -19,7 +19,11 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
   [0,4,8], [2,4,6]
   ];
 
+  $scope.message= "";
+
   $scope.turn = 0;
+
+  $scope.tieOrWin = true;
 
   $scope.activeTiles = [];
   
@@ -67,10 +71,16 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
       console.log(_.intersection($scope.win_combos[combo], moves), $scope.win_combos[combo] );
       if(_.intersection($scope.win_combos[combo], moves).length == $scope.win_combos[combo].length){
         console.log("It's a win!");
+        $scope.handleWin();
         return true;
       }
     }
    $scope.isTie(moves);
+  };
+
+  $scope.handleWin = function(){
+    $scope.tieOrWin = false;
+    $scope.message = $scope.currentPlayer().name + " wins!";
   };
 
   $scope.isBoardFull = function(){
@@ -82,31 +92,28 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
 
   $scope.isTie = function(moves){
     if($scope.isBoardFull()){
-
       console.log("it's a tie!");
+      $scope.handleTie();
       return true;
     }else {
       console.log("not a tie", $scope.activeTiles);
     }
   };
 
-  $scope.activePlayer = function(index){
-    console.log(index);
-    // for(var player in players){
-    //   if($scope.players[i].indicator === String(index))
-    //     console.log('current');
-    //     return 'current';
-    // }
-
+  $scope.handleTie = function(){
+    $scope.tieOrWin = false;
+    $scope.message = "it's a tie!";
   };
 
-  $scope.test = function(index){
-    for(var j in $scope.players){
-      if($scope.players[j].indicator === index){
-        return 'current';
-      }
+  $scope.playAgain = function(){
+    $scope.tieOrWin = true;
+    for (var tile in $scope.tiles){
+      $scope.tiles[tile].letter = '';
     }
+    for(var player in $scope.players){
+      $scope.players[player].moves = [];
+    }
+    $scope.activeTiles = [];
   };
-
 
 }]);

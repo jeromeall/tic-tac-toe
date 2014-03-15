@@ -9,9 +9,9 @@
   <div id="board" >
     <div  ng-repeat='tile in tiles' id="{{tile.name}}" class='tile' ng-click="addMarker($index)">{{tile.letter}}</div>
   </div>
-  <div id="results">
-    <h1></h1>
+  <div id="results" ng-hide="tieOrWin" class="ng-hide">
+    <h1 ng-model='message'>{{message}}</h1>
     <span class="image"></span>
-    <button>play again</button>
+    <button ng-click="playAgain()">play again</button>
   </div>
 </div>
