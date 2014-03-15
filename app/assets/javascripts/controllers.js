@@ -13,6 +13,12 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
     {letter: "", id: "8", name: "tile8"}
     ];
 
+  $scope.win_combos = [ 
+  [0,1,2], [3,4,5], [6,7,8],
+  [0,3,6], [1,4,7], [2,5,8],
+  [0,4,8], [2,4,6]
+  ];
+
   $scope.turn = 0;
   
   $scope.currentPlayer = function(){
@@ -22,32 +28,62 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
   $scope.playerIndex = function(){
     return $scope.turn % 2;
   };
-
-    
+  
 
   $scope.players = [                         // player data
     {
       name:      'Ernie',
       marker:    'X',
-      img_url:   'images/ernie.jpg'
-      // indicator: $(status_indicators[0])
+      img_url:   'ernie.jpg',
+      indicator: 0,
+      moves: []
     },
     {
       name:      'Bert',
       marker:    'O',
-      img_url:   'images/bert.jpg'
-      // indicator: $(status_indicators[1])
+      img_url:   'bert.jpg',
+      indicator: 1,
+      moves: []
     }
   ];
 
   $scope.addMarker = function(index){
     console.log($scope.currentPlayer(), $scope.turn);
     for(var i in $scope.tiles){
-      if($scope.tiles[i].id === String(index)){
+      if($scope.tiles[i].id === String(index) && $scope.tiles[i].letter === '' ){
         $scope.tiles[i].letter = $scope.currentPlayer().marker;
+        $scope.currentPlayer().moves.push(index);
+        $scope.isWin($scope.currentPlayer().moves);
         $scope.turn += 1;
       }
     }
   };
+
+  $scope.isWin = function(moves) {
+    for(var combo in $scope.win_combos){
+      if(_.intersection($scope.win_combos[combo], moves).length == $scope.win_combos[combo].length){
+        alert('you win!');
+      }
+    }
+  };
+
+  $scope.activePlayer = function(index){
+    console.log(index);
+    // for(var player in players){
+    //   if($scope.players[i].indicator === String(index))
+    //     console.log('current');
+    //     return 'current';
+    // }
+
+  };
+
+  $scope.test = function(index){
+    for(var j in $scope.players){
+      if($scope.players[j].indicator === index){
+        return 'current';
+      }
+    }
+  };
+
 
 }]);
