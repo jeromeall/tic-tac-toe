@@ -5,7 +5,11 @@ ticToeRouter.config(['$routeProvider',function($routeProvider){
   $routeProvider.
       when("/", 
       {
-        templateUrl: "/tic_toe_template",
+        templateUrl: "../templates/tic_toe_template.html.erb",
         controller: "ticToeCtrl"
+      }).
+      when("/sp",{
+        templateUrl: "../templates/tic_toe_template.html.erb",
+        controller: "spTicToeCtrl"
       });
 }]);

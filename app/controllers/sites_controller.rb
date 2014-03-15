@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   def index
   end
 
-  def tic_toe_template
+  def sp
     render layout: false
   end
 
