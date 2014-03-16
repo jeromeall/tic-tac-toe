@@ -199,23 +199,27 @@ ticToeControllers.controller('spTicToeCtrl',['$scope', function($scope){
         emptyTiles.push($scope.tiles[tile].id);
       }
     }
-    var compChoice = $scope.getRandomArbitrary(emptyTiles.length);
-    $scope.tiles[emptyTiles[compChoice]].letter = $scope.currentPlayer().marker;
-    $scope.isWin($scope.currentPlayer().moves);
-    console.log("empty tiles:",emptyTiles, "active tiles: ", $scope.activeTiles, "comp choice: ", $scope.tiles[compChoice].id, "current player moves: ", $scope.currentPlayer().moves);
+    var randNumber = $scope.getRandomArbitrary(emptyTiles.length);
+    var compChoice = emptyTiles[randNumber];
+    console.log(emptyTiles, compChoice);
+    $scope.tiles[compChoice].letter = $scope.currentPlayer().marker;
+    $scope.currentPlayer().moves.push(parseInt($scope.tiles[compChoice].id));
+    $scope.activeTiles.push($scope.tiles[compChoice].id);
+    $scope.isWin($scope.currentPlayer().moves);    
+    console.log("empty tiles:",emptyTiles, "active tiles: ", $scope.activeTiles, "comp choice: ", $scope.tiles[compChoice].id, "current player moves: ", $scope.currentPlayer().moves, "turn: ", $scope.turn, "computer moves: ", $scope.players[1].moves);
   };
 
   $scope.getRandomArbitrary= function(length) {
-    return Math.floor(Math.random() * (length - 1) + 1);
+    return Math.floor(Math.random() * (length - 1));
   };
 
   $scope.isWin = function(moves) {
-    $scope.turn += 1;
     for(var combo in $scope.win_combos){
       console.log(_.intersection($scope.win_combos[combo], moves), $scope.win_combos[combo] );
       if(_.intersection($scope.win_combos[combo], moves).length == $scope.win_combos[combo].length){
         console.log("It's a win!");
         $scope.handleWin();
+        $scope.turn += 1;
         return true;
       }
     }
@@ -238,11 +242,15 @@ ticToeControllers.controller('spTicToeCtrl',['$scope', function($scope){
     if($scope.isBoardFull()){
       console.log("it's a tie!");
       $scope.handleTie();
+      $scope.turn +=1;
       return true;
     }else {
-      if($scope.currentPlayer().indicator === 1)
+      $scope.turn += 1;
+      if($scope.currentPlayer().indicator === 1){
         $scope.computerMove();
       }
+      
+    }
   };
 
   $scope.handleTie = function(){
@@ -259,6 +267,9 @@ ticToeControllers.controller('spTicToeCtrl',['$scope', function($scope){
       $scope.players[player].moves = [];
     }
     $scope.activeTiles = [];
+    if($scope.currentPlayer().indicator === 1){
+      $scope.computerMove();
+    }
   };
 
 }]);
