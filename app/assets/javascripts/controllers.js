@@ -1,6 +1,8 @@
 var ticToeControllers = angular.module("ticToeControllers", []);
 
 ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
+  $scope.game = "/sp";
+  $scope.gameLink = "Play against Computer";
   $scope.tiles = [ 
     {letter: "", id: "0", name: "tile0"},
     {letter: "", id: "1", name: "tile1"},
@@ -127,6 +129,8 @@ ticToeControllers.controller('ticToeCtrl',['$scope', function($scope){
 
 
 ticToeControllers.controller('spTicToeCtrl',['$scope', function($scope){
+  $scope.game = "";
+  $scope.gameLink = "Play with a friend";
   $scope.tiles = [ 
     {letter: "", id: "0", name: "tile0"},
     {letter: "", id: "1", name: "tile1"},
